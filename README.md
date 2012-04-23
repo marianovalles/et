@@ -1,12 +1,12 @@
 ## estd
 
-TODO - Write a (short) description of your application.
+A collection of generic, reusable Erlang modules.
 
 
 
 ## Installation
 
-Install std by adding it as a [rebar](https://github.com/basho/rebar)
+Install `estd` by adding it as a [rebar](https://github.com/basho/rebar)
 dependency:
 
 ```erlang

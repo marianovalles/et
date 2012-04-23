@@ -13,7 +13,7 @@ dependency:
 % In your rebar.config:
 {deps, [
     % ...
-    std, ".*", {git, "git://github.com/johannesh/estd.git"}}
+    {std, ".*", {git, "git://github.com/johannesh/estd.git"}}
     % ...
 ]}.
 ```

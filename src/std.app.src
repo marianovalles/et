@@ -35,7 +35,7 @@
     % The application master starts the application by calling the application
     % callback function start/2 in the module, and with the start argument,
     % defined here:
-    {mod, {std_app, []}},
+    {mod, { std_app, [] }},
 
     % Configuration parameters: A list of {Par, Val} tuples, Par should be
     % an atom, Val may be any term.

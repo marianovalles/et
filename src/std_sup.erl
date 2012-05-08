@@ -1,5 +1,5 @@
 %% @license GNU General Public License (GPL) Version 3
-%% @doc OTP supervisor module for .
+%% @doc OTP supervisor module for `std`.
 -module (std_sup).
 
 % OPT supervisor callbacks.

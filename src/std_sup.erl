@@ -7,6 +7,7 @@
 -export ([start_link/0, init/1]).
 
 -export ([child/2, child/3, child/4, child/5, child/6]).
+-export ([spec/0, spec/1, spec/2, spec/3, spec/4]).
 
 
 %% @doc Creates a std supervisor process as part of a supervision tree.
@@ -16,6 +17,28 @@ start_link() ->
 
 %% @doc Callback; Builds std's main supervisor spec.
 init([]) -> ignore.
+
+
+
+%% @doc TODO - Document!
+spec() ->
+    spec([]).
+
+%% @doc TODO - Document!
+spec(Children) ->
+    spec(Children, _RestartStrategy = one_for_all).
+
+%% @doc TODO - Document!
+spec(Children, RestartStrategy) ->
+    spec(Children, RestartStrategy, _MaxR = 0).
+
+%% @doc TODO - Document!
+spec(Children, RestartStrategy, MaxR) ->
+    spec(Children, RestartStrategy, MaxR, _MaxT = 1).
+
+%% @doc TODO - Document!
+spec(Children, RestartStrategy, MaxR, MaxT) ->
+    {ok, {{RestartStrategy, MaxR, MaxT}, Children}}.
 
 
 

@@ -2,6 +2,7 @@
 -include_lib ("eunit/include/eunit.hrl").
 -compile (export_all).
 
+
 child_test_() ->
     Mfa0 = {module, start_link, []},
     ChildSpec = {id, Mfa0, temporary, 5000, worker, [module]},
@@ -18,3 +19,18 @@ child_test_() ->
     ] || Mfa <- MfaVariants ]),
 
     [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
+
+
+spec_test_() ->
+    SupSpec = {ok, {{one_for_all, 0, 1}, []}},
+
+    Specs = [
+        % Test spec generation for any point in the cascade.
+        std_sup:spec(),
+        std_sup:spec([]),
+        std_sup:spec([], one_for_all),
+        std_sup:spec([], one_for_all, 0),
+        std_sup:spec([], one_for_all, 0, 1)
+    ],
+
+    [?_assertEqual(SupSpec, Spec) || Spec <- Specs].

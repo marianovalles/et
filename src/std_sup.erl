@@ -1,23 +1,9 @@
 %% @license GNU General Public License (GPL) Version 3
-%% @doc OTP supervisor module for `std`.
+%% @doc OTP supervisor helper module.
 -module (std_sup).
-
-% OPT supervisor callbacks.
--behaviour (supervisor).
--export ([start_link/0, init/1]).
 
 -export ([child/2, child/3, child/4, child/5, child/6]).
 -export ([spec/0, spec/1, spec/2, spec/3, spec/4]).
-
-
-%% @doc Creates a std supervisor process as part of a supervision tree.
-start_link() ->
-    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
-
-
-%% @doc Callback; Builds std's main supervisor spec.
-init([]) -> ignore.
-
 
 
 %% @doc TODO - Document!

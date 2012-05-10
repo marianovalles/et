@@ -1,6 +1,6 @@
 %% @license GNU General Public License (GPL) Version 3
 %% @doc Application configuration retrieval.
--module (std.config).
+-module (std_config).
 
 -export ([get/1, get/2, app_get/2, app_get/3]).
 
@@ -46,6 +46,6 @@ env_or_default(Args, Default) ->
 %%      {std, {std_config, undefined, Param}} otherwise.
 ensure_param(Args) ->
     case env_or_default(Args, undef__) of
-        undef__ -> throw({error, {std.config, undefined, Args}});
+        undef__ -> throw({error, {std_config, undefined, Args}});
         Value -> Value
     end.

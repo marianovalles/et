@@ -21,6 +21,17 @@ child_test_() ->
     [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
 
 
+short_child_test_() ->
+    Mfa0 = {module, start_link, []},
+    ChildSpec = {module, Mfa0, temporary, 5000, worker, [module]},
+    Specs = [
+        % Test spec generation for super short child-specs.
+        std.sup:child(module),
+        std.sup:child(module, worker)
+    ],
+    [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
+
+
 spec_test_() ->
     SupSpec = {ok, {{one_for_all, 0, 1}, []}},
 

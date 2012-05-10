@@ -2,8 +2,15 @@
 %% @doc OTP supervisor helper module.
 -module (std.sup).
 
--export ([child/2, child/3, child/4, child/5, child/6]).
+-export ([child/1, child/2, child/3, child/4, child/5, child/6]).
 -export ([spec/0, spec/1, spec/2, spec/3, spec/4]).
+
+%% @doc TODO - Document!
+-define (DEFAULT_TYPE, worker).
+%% @doc TODO - Document!
+-define (DEFAULT_RESTART, temporary).
+%% @doc TODO - Document!
+-define (DEFAULT_SHUTDOWN, 5000).
 
 
 %% @doc TODO - Document!
@@ -29,16 +36,24 @@ spec(Children, RestartStrategy, MaxR, MaxT) ->
 
 
 %% @doc TODO - Document!
+child(Module) ->
+    child(Module, Module).
+
+%% @doc TODO - Document!
+child(Module, Type) when Type == worker orelse Type == supervisor ->
+    child(Module, Module, ?DEFAULT_RESTART, ?DEFAULT_SHUTDOWN, Type);
+
+%% @doc TODO - Document!
 child(Id, StartFunc) ->
-    child(Id, StartFunc, temporary).
+    child(Id, StartFunc, ?DEFAULT_RESTART).
 
 %% @doc TODO - Document!
 child(Id, StartFunc, Restart) ->
-    child(Id, StartFunc, Restart, _Shutdown = 5000).
+    child(Id, StartFunc, Restart, ?DEFAULT_SHUTDOWN).
 
 %% @doc TODO - Document!
 child(Id, StartFunc, Restart, Shutdown) ->
-    child(Id, StartFunc, Restart, Shutdown, _Type = worker).
+    child(Id, StartFunc, Restart, Shutdown, ?DEFAULT_TYPE).
 
 %% @doc TODO - Document!
 child(Id, StartFunc0, Restart, Shutdown, Type) ->

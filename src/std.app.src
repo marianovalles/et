@@ -7,29 +7,21 @@
 
     % All names of registered processes in the application. systools uses this
     % list to detect name clashes between applications.
-    {registered, [
-        std_sup
-    ]},
+    {registered, []},
 
     % All modules introduced by this application. systools uses this list when
     % generating boot scripts and tar files. A module must be defined in one and
     % only one application. Defaults to [].
-    {modules, [
-        std_app,
-        std_sup
-    ]},
+    {modules, []},
 
     % All applications which must be started before this application is started.
     % systools uses this list to generate correct boot scripts.
-    {applications, [
-        kernel,
-        stdlib
-    ]},
+    {applications, [kernel, stdlib]},
 
-    % The application controller will automatically load any included applications
-    % when loading a primary application, but not start them. Instead, the top
-    % supervisor of the included application must be started by a supervisor in
-    % the including application.
+    % The application controller will automatically load any included
+    % applications when loading a primary application, but not start them.
+    % Instead, the top supervisor of the included application must be started by
+    % a supervisor in the including application.
     {included_applications, []},
 
     % Configuration parameters: A list of {Par, Val} tuples, Par should be

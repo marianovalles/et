@@ -1,6 +1,7 @@
 %% @license GNU General Public License (GPL) Version 3
 %% @doc Application configuration retrieval.
 -module (std.config).
+
 -export ([get/1, get/2, app_get/2, app_get/3]).
 
 

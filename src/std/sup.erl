@@ -7,8 +7,10 @@
 
 %% @doc TODO - Document!
 -define (DEFAULT_TYPE, worker).
+
 %% @doc TODO - Document!
 -define (DEFAULT_RESTART, temporary).
+
 %% @doc TODO - Document!
 -define (DEFAULT_SHUTDOWN, 5000).
 

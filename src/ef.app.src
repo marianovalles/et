@@ -1,6 +1,6 @@
 {application, std, [
     % A very short description of your application.
-    {description, "Reusable Erlang Modules"},
+    {description, "Common Foundation Modules"},
 
     % Pull the version number from git.
     {vsn, git},

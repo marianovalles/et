@@ -1,6 +1,6 @@
 %% @license GNU General Public License (GPL) Version 3
 %% @doc OTP supervisor helper module.
--module (std_sup).
+-module (ef_sup).
 
 -export ([child/1, child/2, child/3, child/4, child/5, child/6]).
 -export ([spec/0, spec/1, spec/2, spec/3, spec/4]).

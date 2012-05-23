@@ -1,4 +1,4 @@
--module (std_sup_tests).
+-module (ef_sup_tests).
 -include_lib ("eunit/include/eunit.hrl").
 -compile (export_all).
 
@@ -6,16 +6,16 @@
 child_test_() ->
     Mfa0 = {module, start_link, []},
     ChildSpec = {id, Mfa0, temporary, 5000, worker, [module]},
-    % Expect std_sup:child to be able to handle any kind of Mfa variant.
+    % Expect ef_sup:child to be able to handle any kind of Mfa variant.
     MfaVariants = [module, {module}, {module, start_link}, Mfa0],
 
     Specs = lists:flatten([[
         % Test spec generation for any point in the cascade.
-        std_sup:child(id, Mfa),
-        std_sup:child(id, Mfa, temporary),
-        std_sup:child(id, Mfa, temporary, 5000),
-        std_sup:child(id, Mfa, temporary, 5000, worker),
-        std_sup:child(id, Mfa, temporary, 5000, worker, [module])
+        ef_sup:child(id, Mfa),
+        ef_sup:child(id, Mfa, temporary),
+        ef_sup:child(id, Mfa, temporary, 5000),
+        ef_sup:child(id, Mfa, temporary, 5000, worker),
+        ef_sup:child(id, Mfa, temporary, 5000, worker, [module])
     ] || Mfa <- MfaVariants ]),
 
     [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
@@ -26,8 +26,8 @@ short_child_test_() ->
     ChildSpec = {module, Mfa0, temporary, 5000, worker, [module]},
     Specs = [
         % Test spec generation for super short child-specs.
-        std_sup:child(module),
-        std_sup:child(module, worker)
+        ef_sup:child(module),
+        ef_sup:child(module, worker)
     ],
     [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
 
@@ -37,11 +37,11 @@ spec_test_() ->
 
     Specs = [
         % Test spec generation for any point in the cascade.
-        std_sup:spec(),
-        std_sup:spec([]),
-        std_sup:spec([], one_for_all),
-        std_sup:spec([], one_for_all, 0),
-        std_sup:spec([], one_for_all, 0, 1)
+        ef_sup:spec(),
+        ef_sup:spec([]),
+        ef_sup:spec([], one_for_all),
+        ef_sup:spec([], one_for_all, 0),
+        ef_sup:spec([], one_for_all, 0, 1)
     ],
 
     [?_assertEqual(SupSpec, Spec) || Spec <- Specs].

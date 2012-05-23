@@ -1,12 +1,12 @@
 %% @license GNU General Public License (GPL) Version 3
 %% @doc Application configuration retrieval.
--module (std_config).
+-module (ef_config).
 
 -export ([get/1, get/2, app_get/2, app_get/3]).
 
 
 %% @doc Attempts to get the given key from the current app's environment,
-%%            throws {std, {std_config, undefined, Param}} otherwise.
+%%            throws {std, {ef_config, undefined, Param}} otherwise.
 get(Param) ->
     ensure_param([Param]).
 
@@ -19,7 +19,7 @@ get(Param, Default) ->
 
 %% @doc Attempts to retrieve Param from the App's environment,
 %%      throws an exception of the form
-%%      {std, {std_config, undefined, Param}} otherwise.
+%%      {std, {ef_config, undefined, Param}} otherwise.
 app_get(App, Param) ->
     ensure_param([App, Param]).
 
@@ -33,7 +33,7 @@ app_get(App, Param, Default) ->
 
 %% @doc Attempts to retrieve Param from the calling processes's application
 %%      environment, throws an exception of the form
-%%      {std, {std_config, undefined, Param}} otherwise.
+%%      {std, {ef_config, undefined, Param}} otherwise.
 env_or_default(Args, Default) ->
     case erlang:apply(application, get_env, Args) of
         {ok, Value} -> Value;
@@ -43,9 +43,9 @@ env_or_default(Args, Default) ->
 
 %% @doc Either retrieves the environment variable defined through Args or
 %%      throws an exception of the form
-%%      {std, {std_config, undefined, Param}} otherwise.
+%%      {std, {ef_config, undefined, Param}} otherwise.
 ensure_param(Args) ->
     case env_or_default(Args, undef__) of
-        undef__ -> throw({error, {std_config, undefined, Args}});
+        undef__ -> throw({error, {ef_config, undefined, Args}});
         Value -> Value
     end.

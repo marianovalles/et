@@ -1,20 +1,18 @@
-## estd
+## ef_common
 
-A collection of generic, reusable Erlang modules.
+A collection of general, reusable Erlang modules.
 
 
 
 ## Installation
 
-Install `estd` by adding it as a [rebar](https://github.com/basho/rebar)
+Install `ef_common` by adding it as a [rebar](https://github.com/basho/rebar)
 dependency:
 
 ```erlang
 % In your rebar.config:
 {deps, [
-    % ...
-    {std, ".*", {git, "git://github.com/johannesh/estd.git"}}
-    % ...
+    {ef_common, ".*", {git, "git://github.com/johannesh/ef_common.git"}}
 ]}.
 ```
 

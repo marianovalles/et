@@ -1,12 +1,14 @@
 %% @license GNU General Public License (GPL) Version 3
+
 %% @doc Application configuration retrieval.
+
 -module (ef_config).
 
 -export ([get/1, get/2, app_get/2, app_get/3]).
 
 
 %% @doc Attempts to get the given key from the current app's environment,
-%%            throws {std, {ef_config, undefined, Param}} otherwise.
+%%      throws {std, {ef_config, undefined, Param}} otherwise.
 get(Param) ->
     ensure_param([Param]).
 

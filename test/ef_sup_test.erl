@@ -1,9 +1,10 @@
--module (ef_sup_tests).
--include_lib ("eunit/include/eunit.hrl").
+-module (ef_sup_test).
+-include_lib ("etest/include/etest.hrl").
 -compile (export_all).
 
 
-child_test_() ->
+% ef_sup:child/2-6.
+test_child() ->
     Mfa0 = {module, start_link, []},
     ChildSpec = {id, Mfa0, temporary, 5000, worker, [module]},
     % Expect ef_sup:child to be able to handle any kind of Mfa variant.
@@ -18,10 +19,11 @@ child_test_() ->
         ef_sup:child(id, Mfa, temporary, 5000, worker, [module])
     ] || Mfa <- MfaVariants ]),
 
-    [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
+    [?assert_equal(ChildSpec, Spec) || Spec <- Specs].
 
 
-short_child_test_() ->
+% ef_sup:child/1-2.
+test_short_child() ->
     Mfa0 = {module, start_link, []},
     ChildSpec = {module, Mfa0, temporary, 5000, worker, [module]},
     Specs = [
@@ -29,10 +31,11 @@ short_child_test_() ->
         ef_sup:child(module),
         ef_sup:child(module, worker)
     ],
-    [?_assertEqual(ChildSpec, Spec) || Spec <- Specs].
+    [?assert_equal(ChildSpec, Spec) || Spec <- Specs].
 
 
-spec_test_() ->
+% ef_sup:spec/0-4.
+test_spec() ->
     SupSpec = {ok, {{one_for_all, 0, 1}, []}},
 
     Specs = [
@@ -44,4 +47,4 @@ spec_test_() ->
         ef_sup:spec([], one_for_all, 0, 1)
     ],
 
-    [?_assertEqual(SupSpec, Spec) || Spec <- Specs].
+    [?assert_equal(SupSpec, Spec) || Spec <- Specs].

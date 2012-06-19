@@ -1,4 +1,4 @@
-## ef_common
+## erlang-toolkit/et
 
 A collection of general, reusable Erlang modules.
 
@@ -6,13 +6,13 @@ A collection of general, reusable Erlang modules.
 
 ## Installation
 
-Install `ef_common` by adding it as a [rebar](https://github.com/basho/rebar)
+Install `et` by adding it as a [rebar](https://github.com/basho/rebar)
 dependency:
 
 ```erlang
 % In your rebar.config:
 {deps, [
-    {ef_common, ".*", {git, "git://github.com/johannesh/ef_common.git"}}
+    {et, ".*", {git, "git://github.com/erlang-toolkit/et.git"}}
 ]}.
 ```
 

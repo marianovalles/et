@@ -1,6 +1,6 @@
-{application, ef_common, [
+{application, et_common, [
     % A very short description of your application.
-    {description, "Common Foundation Modules"},
+    {description, "Erlang Toolkit"},
 
     % Pull the version number from git.
     {vsn, git},

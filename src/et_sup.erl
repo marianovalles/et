@@ -2,20 +2,26 @@
 
 %% @doc OTP supervisor helper module.
 
--module (ef_sup).
+-module (et_sup).
 
 -export ([child/1, child/2, child/3, child/4, child/5, child/6]).
 -export ([spec/0, spec/1, spec/2, spec/3, spec/4]).
 
 
 %% @doc TODO - Document!
--define (DEFAULT_TYPE, worker).
+-ifndef (ET_CHILD_TYPE).
+    -define (ET_CHILD_TYPE, worker).
+-endif.
 
 %% @doc TODO - Document!
--define (DEFAULT_RESTART, temporary).
+-ifndef (ET_RESTART_TYPE).
+    -define (ET_RESTART_TYPE, temporary).
+-endif.
 
 %% @doc TODO - Document!
--define (DEFAULT_SHUTDOWN, 5000).
+-ifndef (ET_CHILD_TIMEOUT).
+    -define (ET_CHILD_TIMEOUT, 5000).
+-endif.
 
 
 %% @doc TODO - Document!
@@ -46,19 +52,19 @@ child(Module) ->
 
 %% @doc TODO - Document!
 child(Module, Type) when Type == worker orelse Type == supervisor ->
-    child(Module, Module, ?DEFAULT_RESTART, ?DEFAULT_SHUTDOWN, Type);
+    child(Module, Module, ?ET_RESTART_TYPE, ?ET_CHILD_TIMEOUT, Type);
 
 %% @doc TODO - Document!
 child(Id, StartFunc) ->
-    child(Id, StartFunc, ?DEFAULT_RESTART).
+    child(Id, StartFunc, ?ET_RESTART_TYPE).
 
 %% @doc TODO - Document!
 child(Id, StartFunc, Restart) ->
-    child(Id, StartFunc, Restart, ?DEFAULT_SHUTDOWN).
+    child(Id, StartFunc, Restart, ?ET_CHILD_TIMEOUT).
 
 %% @doc TODO - Document!
 child(Id, StartFunc, Restart, Shutdown) ->
-    child(Id, StartFunc, Restart, Shutdown, ?DEFAULT_TYPE).
+    child(Id, StartFunc, Restart, Shutdown, ?ET_CHILD_TYPE).
 
 %% @doc TODO - Document!
 child(Id, StartFunc0, Restart, Shutdown, Type) ->

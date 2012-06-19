@@ -2,40 +2,41 @@
 
 %% @doc Application configuration retrieval.
 
--module (ef_config).
+-module (et_config).
 
 -export ([get/1, get/2, app_get/2, app_get/3]).
 
 
 %% @doc Attempts to get the given key from the current app's environment,
-%%      throws {std, {ef_config, undefined, Param}} otherwise.
+%% throws an exception of the form {et_config, undefined, Param}
+%% otherwise.
 get(Param) ->
     ensure_param([Param]).
 
 
 %% @doc Attempts to retrieve Param from the calling processes's application
-%%      environment, returns Default otherwise.
+%% environment, returns Default otherwise.
 get(Param, Default) ->
     env_or_default([Param], Default).
 
 
 %% @doc Attempts to retrieve Param from the App's environment,
-%%      throws an exception of the form
-%%      {std, {ef_config, undefined, Param}} otherwise.
+%% throws an exception of the form {et_config, undefined, Param}
+%% otherwise.
 app_get(App, Param) ->
     ensure_param([App, Param]).
 
 
-%% @doc Attempts to retrieve Param from the specified application's
-%%      environment, returns Default otherwise.
+%% @doc Attempts to retrieve `Param` from the specified application's
+%% environment, returns `Default` otherwise.
 app_get(App, Param, Default) ->
     env_or_default([App, Param], Default).
 
 
 
-%% @doc Attempts to retrieve Param from the calling processes's application
-%%      environment, throws an exception of the form
-%%      {std, {ef_config, undefined, Param}} otherwise.
+%% @doc Attempts to retrieve `Param` from the calling processes's application
+%% environment, throws an exception of the form {et_config, undefined, Param}
+%% otherwise.
 env_or_default(Args, Default) ->
     case erlang:apply(application, get_env, Args) of
         {ok, Value} -> Value;
@@ -43,11 +44,11 @@ env_or_default(Args, Default) ->
     end.
 
 
-%% @doc Either retrieves the environment variable defined through Args or
-%%      throws an exception of the form
-%%      {std, {ef_config, undefined, Param}} otherwise.
+%% @doc Either retrieves the environment variable defined through `Args` or
+%% throws (error) an exception of the form {et_config, undefined, Param}
+%% otherwise.
 ensure_param(Args) ->
     case env_or_default(Args, undef__) of
-        undef__ -> throw({error, {ef_config, undefined, Args}});
+        undef__ -> error({et_config, undefined, Args});
         Value -> Value
     end.

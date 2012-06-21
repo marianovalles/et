@@ -1,7 +1,6 @@
 ## erlang-toolkit/et
 
-A collection of general, reusable Erlang modules.
-
+`et`, short for erlang-toolkit, is a collection of general-purpose Erlang library modules.
 
 
 ## Installation
@@ -12,8 +11,8 @@ dependency:
 ```erlang
 % In your rebar.config:
 {deps, [
-    {et, ".*", {git, "git://github.com/erlang-toolkit/et.git"}}
+    {et, "", {git, "git://github.com/erlang-toolkit/et.git"}}
 ]}.
 ```
 
-Then run `rebar get-deps` to sync your dependencies.
+Afterwards, run `rebar get-deps` to sync your dependencies.

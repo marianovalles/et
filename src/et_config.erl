@@ -6,27 +6,27 @@
 
 
 %% @doc Attempts to get the given key from the current app's environment,
-%% throws an exception of the form {et_config, undefined, Param}
-%% otherwise.
+%%      throws an exception of the form {et_config, undefined, Param}
+%%      otherwise.
 get(Param) ->
     ensure_param([Param]).
 
 
 %% @doc Attempts to retrieve Param from the calling processes's application
-%% environment, returns Default otherwise.
+%%      environment, returns Default otherwise.
 get(Param, Default) ->
     env_or_default([Param], Default).
 
 
 %% @doc Attempts to retrieve Param from the App's environment,
-%% throws an exception of the form {et_config, undefined, Param}
-%% otherwise.
+%%      throws an exception of the form {et_config, undefined, Param}
+%%      otherwise.
 app_get(App, Param) ->
     ensure_param([App, Param]).
 
 
 %% @doc Attempts to retrieve `Param` from the specified application's
-%% environment, returns `Default` otherwise.
+%%      environment, returns `Default` otherwise.
 app_get(App, Param, Default) ->
     env_or_default([App, Param], Default).
 

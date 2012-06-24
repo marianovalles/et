@@ -1,10 +1,8 @@
 %% @license GNU General Public License (GPL) Version 3
-
 %% @doc Application configuration retrieval.
-
 -module (et_config).
-
--export ([get/1, get/2, app_get/2, app_get/3]).
+-export ([
+    get/1, get/2, app_get/2, app_get/3]).
 
 
 %% @doc Attempts to get the given key from the current app's environment,

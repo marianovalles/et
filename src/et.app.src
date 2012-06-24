@@ -1,4 +1,4 @@
-{application, et_common, [
+{application, et, [
     % A very short description of your application.
     {description, "Erlang Toolkit"},
 

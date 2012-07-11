@@ -1,0 +1,60 @@
+#!/bin/sh
+# Original Author: John Paul Bader <john-paul.bader@wooga.net>
+# With adjustments by: Johannes Huning <johannes.huning@wooga.net>
+
+START_CMD="$2 start"
+PROJECT_ROOT=`pwd`
+NODE_NAME=`basename $PROJECT_ROOT`
+LONGNODE_NAME=$NODE_NAME@`hostname`
+COOKIE="9b90be59d23b70086c6075db2a562feea1c96345"
+
+# Try to get the vm's pid.
+case `uname -s` in
+    Linux|Darwin|FreeBSD|DragonFly|NetBSD|OpenBSD)
+        PID=`ps ax -o pid= -o command= | grep "$PROJECT_ROOT/[ebin]" | awk '{print $1}'`
+        ;;
+esac
+
+# Set environment to `development` if not already set.
+if [ "$ERL_ENV" = "" ]; then
+    ERL_ENV="development"
+fi
+
+# Let the first argument be the action to execute.
+case "$1" in
+    start)
+        if [ "$PID" = "" ]; then
+            erl -detached -pa $PROJECT_ROOT/deps/*/ebin $PROJECT_ROOT/ebin \
+                -setcookie $COOKIE -name $LONGNODE_NAME -s $START_CMD
+        else
+            echo "VM is already running"
+        fi
+        ;;
+    console)
+        if [ "$PID" = "" ]; then
+            erl -pa $PROJECT_ROOT/deps/*/ebin $PROJECT_ROOT/ebin \
+                -setcookie $COOKIE -name $LONGNODE_NAME -s $START_CMD
+        else
+            echo "VM is already running"
+        fi
+        ;;
+    attach)
+        if [ "$PID" != "" ]; then
+            erl -name attached_$NODE_NAME@`hostname` -setcookie $COOKIE \
+                -remsh $LONGNODE_NAME
+        else
+            echo "VM is not running"
+        fi
+        ;;
+    stop)
+        if [ "$PID" = "" ]; then
+            echo "VM is not running"
+        fi
+
+        while `kill -3 $PID 2>/dev/null`; do
+            echo "Stopping VM"
+            sleep 1
+        done
+        ;;
+    esac
+exit 0

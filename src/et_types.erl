@@ -1,8 +1,8 @@
 %% @license GNU General Public License (GPL) Version 3
 %% @doc Type transformation module.
 -module (et_types).
--include ("et_types.hrl").
 -compile (export_all).
+-include ("et_types.hrl").
 
 
 to_int(Integer) when is_integer(Integer) -> Integer;

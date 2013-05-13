@@ -23,6 +23,9 @@ get_pid() {
 
 # Write the pid to the Pids directory
 write_pid() {
+    if [ ! -d "$PIDS_DIR" ]; then
+        mkdir -p $PIDS_DIR
+    fi
     echo $PID > "$PIDS_DIR/$APP_NAME.pid"
 }
 

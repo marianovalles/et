@@ -4,12 +4,13 @@
 #                        Mariano Valles <mariano.valles@wooga.net> ]
 
 START_CMD="$2 start"
+APP_NAME=$2
 PROJECT_ROOT=`pwd`
 PIDS_DIR="tmp/pids"
 NODE_NAME=`basename $PROJECT_ROOT`
-LONGNODE_NAME=$NODE_NAME@`hostname`
+LONGNODE_NAME=$APP_NAMEAPP_NAME@`hostname`
 COOKIE="9b90be59d23b70086c6075db2a562feea1c96345"
-APP_NAME=$2
+
 
 # Attempt to extract the pid from ps
 get_pid() {
